@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Neuroglia.UnitTests.Services
 {
-    internal class TestHttpMessageHandler
+    internal class TestHttpMessageHandler 
         : DelegatingHandler
     {
 

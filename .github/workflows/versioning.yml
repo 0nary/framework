@@ -13,11 +13,10 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
-          token: ${{ secrets.BOT_PAT }}
 
       - name: Reset Origin
         run: |
-          git remote set-url origin "https://${{ secrets.BOT_USERNAME }}:${{ secrets.BOT_PAT }}@github.com/${{ github.repository }}.git"
+          git remote set-url origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
           git checkout ${{ github.ref_name }}
 
       - name: Install Versioning.NET
@@ -26,4 +25,4 @@ jobs:
 
       - name: Increment Version
         run: |
-          dotnet-version increment-version-with-git-hints -g "." --branch-name ${{ github.ref_name }} --author-email ${{ secrets.BOT_EMAIL }}
+          dotnet-version increment-version-with-git-hints -g "." --branch-name ${{ github.ref_name }} --author-email actions@github.com

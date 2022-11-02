@@ -2,6 +2,7 @@ name: Auto Versioning .NET
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   increment-version:

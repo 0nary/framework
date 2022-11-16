@@ -48,3 +48,7 @@ jobs:
 
       - name: Test Data.Repositories.MongoRepositoryTests
         run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories.MongoRepositoryTests"
+
+
+      - name: Test Data.Repositories
+        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories"

@@ -21,7 +21,8 @@ namespace Neuroglia.UnitTests.Containers
                 .WithEnvironment("MONGO_INITDB_ROOT_PASSWORD", MongoDBContainer.DefaultPassword)
                 .WithWaitStrategy(Wait
                     .ForUnixContainer()
-                    .UntilPortIsAvailable(MongoDBContainer.PublicPort))
+                    .UntilPortIsAvailable(MongoDBContainer.PublicPort)
+                    .UntilCommandIsCompleted($"mongo {MongoDBContainer.DefaultDatabase}"))
                 .Build();
             Container.StartAsync().GetAwaiter().GetResult();
             return Container;

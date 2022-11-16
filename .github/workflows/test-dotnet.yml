@@ -46,10 +46,7 @@ jobs:
         run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Flux"
 
       - name: Test Data.OData
-        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.OData"
-
-      - name: Test Data.Repositories
-        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories"
+        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.OData
 
       - name: Test Data.SchemaRegistry
         run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.SchemaRegistry"
@@ -70,4 +67,7 @@ jobs:
         run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Serialization"
 
       - name: Test Templating
-        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Templating"
+        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Templating""
+
+      - name: Test Data.Repositories
+        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories"

@@ -3,7 +3,6 @@ using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.DependencyInjection;
 using Neuroglia.Templating;
 using Neuroglia.Templating.Services;
-using Neuroglia.UnitTests.Cases.Data;
 using RazorLight;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +14,13 @@ using Xunit.Sdk;
 
 namespace Neuroglia.UnitTests.Cases.Templating
 {
+
+    public class TestModel
+    {
+
+        public List<string> Options { get; set; } = new() { "option1", "option2" };
+
+    }
 
     public class RazorLightTemplateRendererTests
     {

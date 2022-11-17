@@ -43,13 +43,16 @@ namespace Neuroglia.UnitTests.Cases.Templating
     </select>
 ";
 
+            //preassert
+            model.Should().NotBeNull();
+            model.Options.Should().NotBeNull();
+            model.Options.Should().HaveCount(2);
+
             //act
             var rendered = await this.TemplateRenderer.RenderTemplateAsync(template, model);
 
             //assert
             rendered.Should().NotBeNullOrWhiteSpace();
-            model.Should().NotBeNull();
-            model.Options.Should().NotBeNull();
         }
 
     }

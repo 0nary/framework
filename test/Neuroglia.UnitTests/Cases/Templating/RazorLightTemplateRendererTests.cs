@@ -36,7 +36,7 @@ namespace Neuroglia.UnitTests.Cases.Templating
             var template = @"
     @model Neuroglia.UnitTests.Cases.Data.TestModel;
     @{
-        string test = this.Model?.Options[0];
+        string test = ""test"";
     }
     <select>
         @foreach(string option in this.Model.Options)

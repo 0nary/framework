@@ -35,27 +35,23 @@ namespace Neuroglia.UnitTests.Cases.Templating
             var model = new TestModel();
             var template = @"
     @model Neuroglia.UnitTests.Cases.Data.TestModel;
-    @{
-        string test = ""test"";
-    }
     <select>
-        @foreach(string option in this.Model.Options)
+        @foreach(string option in this.Model?.Options)
         {
             <option value=""@option"">@option</option>
         }
     </select>
 ";
 
-            //preassert
-            model.Should().NotBeNull();
-            model.Options.Should().NotBeNull();
-            model.Options.Should().HaveCount(2);
-
             //act
             var rendered = await this.TemplateRenderer.RenderTemplateAsync(template, model);
 
             //assert
             rendered.Should().NotBeNullOrWhiteSpace();
+            rendered.Should().Contain("<select>");
+            rendered.Should().Contain($"<option value=\"{model.Options[0]}\">{model.Options[0]}</option>");
+            rendered.Should().Contain($"<option value=\"{model.Options[1]}\">{model.Options[1]}</option>");
+            rendered.Should().Contain("</select>");
         }
 
     }

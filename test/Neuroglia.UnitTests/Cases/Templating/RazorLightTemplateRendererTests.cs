@@ -32,10 +32,11 @@ namespace Neuroglia.UnitTests.Cases.Templating
         public async Task RenderTemplate()
         {
             //arrange
+            var model = new TestModel();
             var template = @"
     @model Neuroglia.UnitTests.Cases.Data.TestModel;
     <select>
-        @foreach(string option in this.Model?.Options)
+        @foreach(string option in this.Model.Options)
         {
             <option value=""@option"">@option</option>
         }
@@ -43,10 +44,12 @@ namespace Neuroglia.UnitTests.Cases.Templating
 ";
 
             //act
-            var rendered = await this.TemplateRenderer.RenderTemplateAsync(template, new TestModel());
+            var rendered = await this.TemplateRenderer.RenderTemplateAsync(template, model);
 
             //assert
             rendered.Should().NotBeNullOrWhiteSpace();
+            model.Should().NotBeNull();
+            model.Options.Should().NotBeNull();
         }
 
     }

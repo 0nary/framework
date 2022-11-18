@@ -17,25 +17,25 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         : IDisposable
     {
 
-        public EFCoreRepositoryTests()
-        {
-            ServiceCollection services = new();
-            services.AddLogging();
-            services.AddDbContext<TestDbContext>(options => options.UseNpgsql(PostgreSQLContainerBuilder.Build().ConnectionString));
-            services.AddEFCoreRepositories<TestDbContext>();
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-            this.ServiceScope = services.BuildServiceProvider().CreateScope();
-            this.DbContext = this.ServiceScope.ServiceProvider.GetRequiredService<TestDbContext>();
-            this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<EFCoreRepository<TestPerson, Guid, TestDbContext>>();
-        }
+        //public EFCoreRepositoryTests()
+        //{
+        //    ServiceCollection services = new();
+        //    services.AddLogging();
+        //    services.AddDbContext<TestDbContext>(options => options.UseNpgsql(PostgreSQLContainerBuilder.Build().ConnectionString));
+        //    services.AddEFCoreRepositories<TestDbContext>();
+        //    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+        //    this.ServiceScope = services.BuildServiceProvider().CreateScope();
+        //    this.DbContext = this.ServiceScope.ServiceProvider.GetRequiredService<TestDbContext>();
+        //    this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<EFCoreRepository<TestPerson, Guid, TestDbContext>>();
+        //}
 
-        IServiceScope ServiceScope { get; }
+        //IServiceScope ServiceScope { get; }
 
-        TestDbContext DbContext { get; }
+        //TestDbContext DbContext { get; }
 
-        EFCoreRepository<TestPerson, Guid, TestDbContext> Repository { get; }
+        //EFCoreRepository<TestPerson, Guid, TestDbContext> Repository { get; }
 
-        static Guid? EntityId;
+        //static Guid? EntityId;
 
         //[Fact, Priority(0)]
         //public async Task AddEntity()
@@ -145,7 +145,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
 
         public void Dispose()
         {
-            this.ServiceScope.Dispose();
+            //this.ServiceScope.Dispose();
         }
 
     }

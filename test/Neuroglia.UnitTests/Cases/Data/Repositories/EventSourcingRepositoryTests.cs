@@ -23,43 +23,43 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         : IDisposable
     {
 
-        public EventSourcingRepositoryTests()
-        {
-            JsonConvert.DefaultSettings = () =>
-            {
-                JsonSerializerSettings settings = new();
-                settings.ContractResolver = new NonPublicSetterContractResolver();
-                settings.ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
-                return settings;
-            };
-            ServiceCollection services = new();
-            services.AddLogging();
-            services.AddNewtonsoftJsonSerializer(options =>
-            {
-                options.ContractResolver = new NonPublicSetterContractResolver();
-            });
-            services.AddMediator(options =>
-            {
-                options.ScanAssembly(typeof(EventSourcingRepositoryTests).Assembly);
-            });
-            services.AddEventStore(builder =>
-                builder.ConfigureClient(client =>
-                {
-                    client.UseConnectionString(EventStoreContainerBuilder.Build().ConnectionString);
-                }));
-            services.AddEventSourcingRepository<TestPerson, Guid>();
-            this.ServiceScope = services.BuildServiceProvider().CreateScope();
-            this.EventStore = this.ServiceScope.ServiceProvider.GetRequiredService<IEventStore>();
-            this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<EventSourcingRepository<TestPerson, Guid>>();
-        }
+        //public EventSourcingRepositoryTests()
+        //{
+        //    JsonConvert.DefaultSettings = () =>
+        //    {
+        //        JsonSerializerSettings settings = new();
+        //        settings.ContractResolver = new NonPublicSetterContractResolver();
+        //        settings.ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
+        //        return settings;
+        //    };
+        //    ServiceCollection services = new();
+        //    services.AddLogging();
+        //    services.AddNewtonsoftJsonSerializer(options =>
+        //    {
+        //        options.ContractResolver = new NonPublicSetterContractResolver();
+        //    });
+        //    services.AddMediator(options =>
+        //    {
+        //        options.ScanAssembly(typeof(EventSourcingRepositoryTests).Assembly);
+        //    });
+        //    services.AddEventStore(builder =>
+        //        builder.ConfigureClient(client =>
+        //        {
+        //            client.UseConnectionString(EventStoreContainerBuilder.Build().ConnectionString);
+        //        }));
+        //    services.AddEventSourcingRepository<TestPerson, Guid>();
+        //    this.ServiceScope = services.BuildServiceProvider().CreateScope();
+        //    this.EventStore = this.ServiceScope.ServiceProvider.GetRequiredService<IEventStore>();
+        //    this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<EventSourcingRepository<TestPerson, Guid>>();
+        //}
 
-        IServiceScope ServiceScope { get; }
+        //IServiceScope ServiceScope { get; }
 
-        IEventStore EventStore { get; }
+        //IEventStore EventStore { get; }
 
-        EventSourcingRepository<TestPerson, Guid> Repository { get; }
+        //EventSourcingRepository<TestPerson, Guid> Repository { get; }
 
-        static Guid? AggregateId;
+        //static Guid? AggregateId;
 
         //[Fact, Priority(0)]
         //public async Task AddAggregate()
@@ -236,7 +236,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
 
         public void Dispose()
         {
-            this.ServiceScope.Dispose();
+            //this.ServiceScope.Dispose();
         }
 
     }

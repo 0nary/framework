@@ -61,172 +61,172 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
 
         static Guid? AggregateId;
 
-        //[Fact, Priority(0)]
-        //public async Task AddAggregate()
-        //{
-        //    //arrange
-        //    var firstName = "Fake First Name";
-        //    var lastName = "Fake Last Name";
-        //    var aggregate = new TestPerson(firstName, lastName);
+        [Fact, Priority(0)]
+        public async Task AddAggregate()
+        {
+            //arrange
+            var firstName = "Fake First Name";
+            var lastName = "Fake Last Name";
+            var aggregate = new TestPerson(firstName, lastName);
 
-        //    //act
-        //    aggregate = await this.Repository.AddAsync(aggregate);
-        //    await this.Repository.SaveChangesAsync();
-        //    AggregateId = aggregate?.Id;
+            //act
+            aggregate = await this.Repository.AddAsync(aggregate);
+            await this.Repository.SaveChangesAsync();
+            AggregateId = aggregate?.Id;
 
-        //    //assert
-        //    aggregate.Should().NotBeNull();
-        //    aggregate.FirstName.Should().Be(firstName);
-        //    aggregate.LastName.Should().Be(lastName);
-        //    aggregate = await this.Repository.FindAsync(AggregateId.Value);
-        //    aggregate.Should().NotBeNull();
-        //    aggregate.FirstName.Should().Be(firstName);
-        //    aggregate.LastName.Should().Be(lastName);
-        //}
+            //assert
+            aggregate.Should().NotBeNull();
+            aggregate.FirstName.Should().Be(firstName);
+            aggregate.LastName.Should().Be(lastName);
+            aggregate = await this.Repository.FindAsync(AggregateId.Value);
+            aggregate.Should().NotBeNull();
+            aggregate.FirstName.Should().Be(firstName);
+            aggregate.LastName.Should().Be(lastName);
+        }
 
-        //[Fact, Priority(1)]
-        //public async Task ContainsAggregate()
-        //{
-        //    //act
-        //    bool exists = await this.Repository.ContainsAsync(AggregateId.Value);
+        [Fact, Priority(1)]
+        public async Task ContainsAggregate()
+        {
+            //act
+            bool exists = await this.Repository.ContainsAsync(AggregateId.Value);
 
-        //    //assert
-        //    exists.Should().BeTrue();
-        //}
+            //assert
+            exists.Should().BeTrue();
+        }
 
-        //[Fact, Priority(2)]
-        //public async Task FindAggregate()
-        //{
-        //    //act
-        //    TestPerson aggregate = await this.Repository.FindAsync(AggregateId.Value);
+        [Fact, Priority(2)]
+        public async Task FindAggregate()
+        {
+            //act
+            TestPerson aggregate = await this.Repository.FindAsync(AggregateId.Value);
 
-        //    //assert
-        //    aggregate.Should().NotBeNull();
-        //}
+            //assert
+            aggregate.Should().NotBeNull();
+        }
 
-        //[Fact, Priority(3)]
-        //public async Task UpdateAggregate()
-        //{
-        //    //arrange
-        //    var aggregate = await this.Repository.FindAsync(AggregateId.Value);
-        //    var originalVersion = aggregate.StateVersion;
-        //    var newFirstName = "Updated Fake First Name";
-        //    var newLastName = "Updated Fake Last Name";
-        //    aggregate.SetFirstName(newFirstName);
-        //    aggregate.SetLastName(newLastName);
+        [Fact, Priority(3)]
+        public async Task UpdateAggregate()
+        {
+            //arrange
+            var aggregate = await this.Repository.FindAsync(AggregateId.Value);
+            var originalVersion = aggregate.StateVersion;
+            var newFirstName = "Updated Fake First Name";
+            var newLastName = "Updated Fake Last Name";
+            aggregate.SetFirstName(newFirstName);
+            aggregate.SetLastName(newLastName);
 
-        //    //act
-        //    aggregate = await this.Repository.UpdateAsync(aggregate);
+            //act
+            aggregate = await this.Repository.UpdateAsync(aggregate);
 
-        //    //assert
-        //    aggregate.Should().NotBeNull();
-        //    aggregate.FirstName.Should().Be(newFirstName);
-        //    aggregate.LastName.Should().Be(newLastName);
-        //    aggregate.StateVersion.Should().BeGreaterThan(originalVersion);
-        //    aggregate = await this.Repository.FindAsync(AggregateId.Value);
-        //    aggregate.Should().NotBeNull();
-        //    aggregate.FirstName.Should().Be(newFirstName);
-        //    aggregate.LastName.Should().Be(newLastName);
-        //    aggregate.StateVersion.Should().BeGreaterThan(originalVersion);
-        //}
+            //assert
+            aggregate.Should().NotBeNull();
+            aggregate.FirstName.Should().Be(newFirstName);
+            aggregate.LastName.Should().Be(newLastName);
+            aggregate.StateVersion.Should().BeGreaterThan(originalVersion);
+            aggregate = await this.Repository.FindAsync(AggregateId.Value);
+            aggregate.Should().NotBeNull();
+            aggregate.FirstName.Should().Be(newFirstName);
+            aggregate.LastName.Should().Be(newLastName);
+            aggregate.StateVersion.Should().BeGreaterThan(originalVersion);
+        }
 
-        //[Fact, Priority(4)]
-        //public async Task ListEntities()
-        //{
-        //    //act
-        //    Func<Task> act = () => this.Repository.ToListAsync();
+        [Fact, Priority(4)]
+        public async Task ListEntities()
+        {
+            //act
+            Func<Task> act = () => this.Repository.ToListAsync();
 
-        //    //assert
-        //    await act.Should().ThrowAsync<NotSupportedException>();
-        //}
+            //assert
+            await act.Should().ThrowAsync<NotSupportedException>();
+        }
 
-        //[Fact, Priority(5)]
-        //public void GetQueryable()
-        //{
-        //    //act
-        //    Action act = () => this.Repository.AsQueryable();
+        [Fact, Priority(5)]
+        public void GetQueryable()
+        {
+            //act
+            Action act = () => this.Repository.AsQueryable();
 
-        //    //assert
-        //    act.Should().Throw<NotSupportedException>();
-        //}
+            //assert
+            act.Should().Throw<NotSupportedException>();
+        }
 
-        //[Fact, Priority(6)]
-        //public async Task Snapshot()
-        //{
-        //    //arrange
-        //    var aggregate = await this.Repository.FindAsync(AggregateId.Value);
-        //    var snapshotStreamId = $"{nameof(TestPerson).ToLower()}-snapshots-{AggregateId.Value.ToString().Replace("-", "")}";
-        //    //act
+        [Fact, Priority(6)]
+        public async Task Snapshot()
+        {
+            //arrange
+            var aggregate = await this.Repository.FindAsync(AggregateId.Value);
+            var snapshotStreamId = $"{nameof(TestPerson).ToLower()}-snapshots-{AggregateId.Value.ToString().Replace("-", "")}";
+            //act
 
-        //    for (int i = 0; i < EventSourcingRepositoryOptions.DefaultSnapshotFrequency; i++)
-        //    {
-        //        aggregate.SetFirstName($"Fake First Name {i}");
-        //        aggregate.SetLastName($"Fake Last Name {i}");
-        //        await this.Repository.UpdateAsync(aggregate);
-        //        await this.Repository.SaveChangesAsync();
-        //    }
+            for (int i = 0; i < EventSourcingRepositoryOptions.DefaultSnapshotFrequency; i++)
+            {
+                aggregate.SetFirstName($"Fake First Name {i}");
+                aggregate.SetLastName($"Fake Last Name {i}");
+                await this.Repository.UpdateAsync(aggregate);
+                await this.Repository.SaveChangesAsync();
+            }
 
-        //    var stream = await this.EventStore.GetStreamAsync(snapshotStreamId);
+            var stream = await this.EventStore.GetStreamAsync(snapshotStreamId);
 
-        //    //assert
-        //    stream.Should().NotBeNull();
-        //    stream.Length.Should().Be(2);
-        //}
+            //assert
+            stream.Should().NotBeNull();
+            stream.Length.Should().Be(2);
+        }
 
-        //[Fact, Priority(7)]
-        //public async Task RemoveAggregate()
-        //{
-        //    //act
-        //    await this.Repository.RemoveAsync(AggregateId.Value);
-        //    await this.Repository.SaveChangesAsync();
+        [Fact, Priority(7)]
+        public async Task RemoveAggregate()
+        {
+            //act
+            await this.Repository.RemoveAsync(AggregateId.Value);
+            await this.Repository.SaveChangesAsync();
 
-        //    //assert
-        //    TestPerson aggregate = await this.Repository.FindAsync(AggregateId.Value);
-        //    aggregate.Should().BeNull();
-        //}
+            //assert
+            TestPerson aggregate = await this.Repository.FindAsync(AggregateId.Value);
+            aggregate.Should().BeNull();
+        }
 
-        //[Fact, Priority(8)]
-        //public async Task BenchmarkSnapshotting()
-        //{
-        //    //arrange
-        //    var repositoryWithSnapshots = ActivatorUtilities.CreateInstance<EventSourcingRepository<TestPerson, Guid>>(this.ServiceScope.ServiceProvider);
-        //    var aggregate = new TestPerson("Fake First Name ", "Fake Last Name");
-        //    aggregate = await repositoryWithSnapshots.AddAsync(aggregate);
-        //    await repositoryWithSnapshots.SaveChangesAsync();
-        //    var aggregate1Id = aggregate.Id;
-        //    for (int i = 0; i < 10; i++)
-        //    {
-        //        aggregate.SetFirstName($"Fake First Name {i}");
-        //        aggregate = await repositoryWithSnapshots.UpdateAsync(aggregate);
-        //        await repositoryWithSnapshots.SaveChangesAsync();
-        //    }
-        //    var repositoryWithoutSnapshots = ActivatorUtilities.CreateInstance<EventSourcingRepository<TestPerson, Guid>>(this.ServiceScope.ServiceProvider, Options.Create(new EventSourcingRepositoryOptions<TestPerson, Guid>() { SnapshotFrequency = null }));
-        //    aggregate = new TestPerson("Fake First Name ", "Fake Last Name");
-        //    aggregate = await repositoryWithoutSnapshots.AddAsync(aggregate);
-        //    await repositoryWithoutSnapshots.SaveChangesAsync();
-        //    var aggregate2Id = aggregate.Id;
-        //    for (int i = 0; i < 10; i++)
-        //    {
-        //        aggregate.SetFirstName($"Fake First Name {i}");
-        //        aggregate = await repositoryWithoutSnapshots.UpdateAsync(aggregate);
-        //        await repositoryWithoutSnapshots.SaveChangesAsync();
-        //    }
+        [Fact, Priority(8)]
+        public async Task BenchmarkSnapshotting()
+        {
+            //arrange
+            var repositoryWithSnapshots = ActivatorUtilities.CreateInstance<EventSourcingRepository<TestPerson, Guid>>(this.ServiceScope.ServiceProvider);
+            var aggregate = new TestPerson("Fake First Name ", "Fake Last Name");
+            aggregate = await repositoryWithSnapshots.AddAsync(aggregate);
+            await repositoryWithSnapshots.SaveChangesAsync();
+            var aggregate1Id = aggregate.Id;
+            for (int i = 0; i < 10; i++)
+            {
+                aggregate.SetFirstName($"Fake First Name {i}");
+                aggregate = await repositoryWithSnapshots.UpdateAsync(aggregate);
+                await repositoryWithSnapshots.SaveChangesAsync();
+            }
+            var repositoryWithoutSnapshots = ActivatorUtilities.CreateInstance<EventSourcingRepository<TestPerson, Guid>>(this.ServiceScope.ServiceProvider, Options.Create(new EventSourcingRepositoryOptions<TestPerson, Guid>() { SnapshotFrequency = null }));
+            aggregate = new TestPerson("Fake First Name ", "Fake Last Name");
+            aggregate = await repositoryWithoutSnapshots.AddAsync(aggregate);
+            await repositoryWithoutSnapshots.SaveChangesAsync();
+            var aggregate2Id = aggregate.Id;
+            for (int i = 0; i < 10; i++)
+            {
+                aggregate.SetFirstName($"Fake First Name {i}");
+                aggregate = await repositoryWithoutSnapshots.UpdateAsync(aggregate);
+                await repositoryWithoutSnapshots.SaveChangesAsync();
+            }
 
-        //    //act
-        //    var stopwatch = new Stopwatch();
-        //    stopwatch.Start();
-        //    await repositoryWithSnapshots.FindAsync(aggregate1Id);
-        //    stopwatch.Stop();
-        //    var durationWithSnapshots = stopwatch.Elapsed;
+            //act
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+            await repositoryWithSnapshots.FindAsync(aggregate1Id);
+            stopwatch.Stop();
+            var durationWithSnapshots = stopwatch.Elapsed;
 
-        //    stopwatch.Restart();
-        //    await repositoryWithoutSnapshots.FindAsync(aggregate2Id);
-        //    stopwatch.Stop();
-        //    var durationWithoutSnapshots = stopwatch.Elapsed;
+            stopwatch.Restart();
+            await repositoryWithoutSnapshots.FindAsync(aggregate2Id);
+            stopwatch.Stop();
+            var durationWithoutSnapshots = stopwatch.Elapsed;
 
-        //    //assert
-        //    durationWithSnapshots.Should().BeLessThan(durationWithoutSnapshots);
-        //}
+            //assert
+            durationWithSnapshots.Should().BeLessThan(durationWithoutSnapshots);
+        }
 
         [Fact, Priority(10)]
         public async Task End()

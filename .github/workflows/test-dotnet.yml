@@ -33,5 +33,13 @@ jobs:
       #   run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal"
 
 
+      - name: Test Data.Repositories.EFCoreRepositoryTests
+        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories.EFCoreRepositoryTests"
+
+
+      - name: Test Data.Repositories.EventSourcingRepositoryTests
+        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories.EventSourcingRepositoryTests"
+
+
       - name: Test Data.Repositories
         run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories"

@@ -28,7 +28,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             services.AddMongoDatabase("fakedb");
             services.AddMongoRepository<TestPerson, Guid>();
             this.ServiceScope = services.BuildServiceProvider().CreateScope();
-            this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<MongoRepository<TestPerson, Guid>>();
+            //this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<MongoRepository<TestPerson, Guid>>();
         }
         IServiceScope ServiceScope { get; }
         MongoRepository<TestPerson, Guid> Repository { get; }

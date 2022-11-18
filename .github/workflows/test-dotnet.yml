@@ -60,6 +60,9 @@ jobs:
         run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories.EventSourcingRepositoryTests"
       - name: Test Data.Repositories.MongoRepositoryTests
         run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories.MongoRepositoryTests"
+        
+      - name: Test Data.Repositories
+        run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.Repositories"
 
       - name: Test Data.SchemaRegistry
         run: dotnet test "${{ env.SOLUTION }}" --no-restore --verbosity normal --filter "FullyQualifiedName~Data.SchemaRegistry"

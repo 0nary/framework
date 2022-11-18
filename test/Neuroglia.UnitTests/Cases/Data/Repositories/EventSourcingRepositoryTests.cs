@@ -50,7 +50,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             services.AddEventSourcingRepository<TestPerson, Guid>();
             this.ServiceScope = services.BuildServiceProvider().CreateScope();
             //this.EventStore = this.ServiceScope.ServiceProvider.GetRequiredService<IEventStore>();
-            //this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<EventSourcingRepository<TestPerson, Guid>>();
+            this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<EventSourcingRepository<TestPerson, Guid>>();
         }
 
         IServiceScope ServiceScope { get; }

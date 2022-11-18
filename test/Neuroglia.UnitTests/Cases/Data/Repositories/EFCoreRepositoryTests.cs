@@ -137,15 +137,11 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             entity.Should().BeNull();
         }
 
-        [Fact, Priority(10)]
-        public async Task End()
-        {
-            Assert.True(true);
-        }
-
         public void Dispose()
         {
             this.ServiceScope.Dispose();
+
+            throw new Exception("disposed EFCoreRepositoryTests");
         }
 
     }

@@ -228,15 +228,11 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             durationWithSnapshots.Should().BeLessThan(durationWithoutSnapshots);
         }
 
-        [Fact, Priority(10)]
-        public async Task End()
-        {
-            Assert.True(true);
-        }
-
         public void Dispose()
         {
             this.ServiceScope.Dispose();
+
+            throw new Exception("disposed EventSourcingRepositoryTests");
         }
 
     }

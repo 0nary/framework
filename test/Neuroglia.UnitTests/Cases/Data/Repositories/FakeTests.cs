@@ -24,14 +24,14 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         {
             ServiceCollection services = new();
             services.AddLogging();
-            services.AddSingleton(provider => Cache);
-            services.AddDistributedCacheRepository<TestPerson, Guid>();
+            services.AddMongoClient(MongoClientSettings.FromConnectionString(MongoDBContainerBuilder.Build().ConnectionString));
+            services.AddMongoDatabase("fakedb");
+            services.AddMongoRepository<TestPerson, Guid>();
             this.ServiceScope = services.BuildServiceProvider().CreateScope();
-            this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<DistributedCacheRepository<TestPerson, Guid>>();
+            this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<MongoRepository<TestPerson, Guid>>();
         }
         IServiceScope ServiceScope { get; }
-        static readonly IDistributedCache Cache = new MemoryDistributedCache(new MemoryCache(Options.Create(new MemoryCacheOptions())));
-        DistributedCacheRepository<TestPerson, Guid> Repository { get; }
+        MongoRepository<TestPerson, Guid> Repository { get; }
 
         [Fact, Priority(1)]
         public void Test()

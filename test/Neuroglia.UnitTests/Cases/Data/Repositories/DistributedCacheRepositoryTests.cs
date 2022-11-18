@@ -139,6 +139,12 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             entity.Should().BeNull();
         }
 
+        [Fact, Priority(10)]
+        public async Task End()
+        {
+            throw new NotImplementedException("DistributedCacheRepositoryTests");
+        }
+
         public void Dispose()
         {
             this.ServiceScope.Dispose();

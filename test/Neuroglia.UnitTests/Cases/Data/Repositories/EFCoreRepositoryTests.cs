@@ -37,7 +37,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
 
         static Guid? EntityId;
 
-        [Fact, Priority(10)]
+        [Fact, Priority(0)]
         public async Task AddEntity()
         {
             //arrange
@@ -61,7 +61,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             entity.LastName.Should().Be(lastName);
         }
 
-        [Fact, Priority(11)]
+        [Fact, Priority(1)]
         public async Task ContainsEntity()
         {
             //act
@@ -71,7 +71,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             exists.Should().BeTrue();
         }
 
-        [Fact, Priority(12)]
+        [Fact, Priority(2)]
         public async Task FindEntity()
         {
             //act
@@ -82,7 +82,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             entity.Should().Be(await this.DbContext.Set<TestPerson>().FirstOrDefaultAsync());
         }
 
-        [Fact, Priority(13)]
+        [Fact, Priority(3)]
         public async Task UpdateEntity()
         {
             //arrange
@@ -105,7 +105,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             entity.LastName.Should().Be(newLastName);
         }
 
-        [Fact, Priority(14)]
+        [Fact, Priority(4)]
         public async Task ListEntities()
         {
             //act
@@ -115,7 +115,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             entities.Should().NotBeEmpty();
         }
 
-        [Fact, Priority(15)]
+        [Fact, Priority(5)]
         public async Task GetQueryable()
         {
             //act
@@ -125,7 +125,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             entities.Should().NotBeEmpty();
         }
 
-        [Fact, Priority(16)]
+        [Fact, Priority(6)]
         public async Task RemoveEntity()
         {
             //act
@@ -135,6 +135,12 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             //assert
             TestPerson entity = await this.DbContext.Set<TestPerson>().FirstOrDefaultAsync();
             entity.Should().BeNull();
+        }
+
+        [Fact, Priority(10)]
+        public async Task End()
+        {
+            throw new NotImplementedException("EFCoreRepositoryTests");
         }
 
         public void Dispose()

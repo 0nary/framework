@@ -61,7 +61,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
 
         static Guid? AggregateId;
 
-        [Fact, Priority(20)]
+        [Fact, Priority(0)]
         public async Task AddAggregate()
         {
             //arrange
@@ -84,7 +84,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             aggregate.LastName.Should().Be(lastName);
         }
 
-        [Fact, Priority(21)]
+        [Fact, Priority(1)]
         public async Task ContainsAggregate()
         {
             //act
@@ -94,7 +94,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             exists.Should().BeTrue();
         }
 
-        [Fact, Priority(22)]
+        [Fact, Priority(2)]
         public async Task FindAggregate()
         {
             //act
@@ -104,7 +104,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             aggregate.Should().NotBeNull();
         }
 
-        [Fact, Priority(23)]
+        [Fact, Priority(3)]
         public async Task UpdateAggregate()
         {
             //arrange
@@ -130,7 +130,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             aggregate.StateVersion.Should().BeGreaterThan(originalVersion);
         }
 
-        [Fact, Priority(24)]
+        [Fact, Priority(4)]
         public async Task ListEntities()
         {
             //act
@@ -140,7 +140,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             await act.Should().ThrowAsync<NotSupportedException>();
         }
 
-        [Fact, Priority(25)]
+        [Fact, Priority(5)]
         public void GetQueryable()
         {
             //act
@@ -150,7 +150,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             act.Should().Throw<NotSupportedException>();
         }
 
-        [Fact, Priority(26)]
+        [Fact, Priority(6)]
         public async Task Snapshot()
         {
             //arrange
@@ -173,7 +173,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             stream.Length.Should().Be(2);
         }
 
-        [Fact, Priority(27)]
+        [Fact, Priority(7)]
         public async Task RemoveAggregate()
         {
             //act
@@ -185,7 +185,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             aggregate.Should().BeNull();
         }
 
-        [Fact, Priority(28)]
+        [Fact, Priority(8)]
         public async Task BenchmarkSnapshotting()
         {
             //arrange
@@ -226,6 +226,12 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
 
             //assert
             durationWithSnapshots.Should().BeLessThan(durationWithoutSnapshots);
+        }
+
+        [Fact, Priority(10)]
+        public async Task End()
+        {
+            throw new NotImplementedException("EventSourcingRepositoryTests");
         }
 
         public void Dispose()

@@ -25,7 +25,7 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             services.AddEFCoreRepositories<TestDbContext>();
             AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             this.ServiceScope = services.BuildServiceProvider().CreateScope();
-            this.DbContext = this.ServiceScope.ServiceProvider.GetRequiredService<TestDbContext>();
+            //this.DbContext = this.ServiceScope.ServiceProvider.GetRequiredService<TestDbContext>();
             this.Repository = this.ServiceScope.ServiceProvider.GetRequiredService<EFCoreRepository<TestPerson, Guid, TestDbContext>>();
         }
 
@@ -146,7 +146,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         public void Dispose()
         {
             this.ServiceScope.Dispose();
-            this.DbContext.Dispose();
         }
 
     }

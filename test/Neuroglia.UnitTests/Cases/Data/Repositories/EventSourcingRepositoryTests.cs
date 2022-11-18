@@ -64,7 +64,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(0)]
         public async Task AddAggregate()
         {
-            if (StopOnFail.HasFail) return;
             //arrange
             var firstName = "Fake First Name";
             var lastName = "Fake Last Name";
@@ -88,7 +87,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(1)]
         public async Task ContainsAggregate()
         {
-            if (StopOnFail.HasFail) return;
             //act
             bool exists = await this.Repository.ContainsAsync(AggregateId.Value);
 
@@ -99,7 +97,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(2)]
         public async Task FindAggregate()
         {
-            if (StopOnFail.HasFail) return;
             //act
             TestPerson aggregate = await this.Repository.FindAsync(AggregateId.Value);
 
@@ -110,7 +107,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(3)]
         public async Task UpdateAggregate()
         {
-            if (StopOnFail.HasFail) return;
             //arrange
             var aggregate = await this.Repository.FindAsync(AggregateId.Value);
             var originalVersion = aggregate.StateVersion;
@@ -137,7 +133,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(4)]
         public async Task ListEntities()
         {
-            if (StopOnFail.HasFail) return;
             //act
             Func<Task> act = () => this.Repository.ToListAsync();
 
@@ -148,7 +143,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(5)]
         public void GetQueryable()
         {
-            if (StopOnFail.HasFail) return;
             //act
             Action act = () => this.Repository.AsQueryable();
 
@@ -159,7 +153,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(6)]
         public async Task Snapshot()
         {
-            if (StopOnFail.HasFail) return;
             //arrange
             var aggregate = await this.Repository.FindAsync(AggregateId.Value);
             var snapshotStreamId = $"{nameof(TestPerson).ToLower()}-snapshots-{AggregateId.Value.ToString().Replace("-", "")}";
@@ -183,7 +176,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(7)]
         public async Task RemoveAggregate()
         {
-            if (StopOnFail.HasFail) return;
             //act
             await this.Repository.RemoveAsync(AggregateId.Value);
             await this.Repository.SaveChangesAsync();
@@ -196,7 +188,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(8)]
         public async Task BenchmarkSnapshotting()
         {
-            if (StopOnFail.HasFail) return;
             //arrange
             var repositoryWithSnapshots = ActivatorUtilities.CreateInstance<EventSourcingRepository<TestPerson, Guid>>(this.ServiceScope.ServiceProvider);
             var aggregate = new TestPerson("Fake First Name ", "Fake Last Name");
@@ -235,14 +226,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
 
             //assert
             durationWithSnapshots.Should().BeLessThan(durationWithoutSnapshots);
-        }
-
-        [Fact, Priority(10)]
-        public async Task End()
-        {
-            if (StopOnFail.HasFail) return;
-            StopOnFail.HasFail = true;
-            throw new NotImplementedException("EventSourcingRepositoryTests");
         }
 
         public void Dispose()

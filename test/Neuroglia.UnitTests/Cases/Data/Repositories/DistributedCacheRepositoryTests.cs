@@ -39,7 +39,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(0)]
         public async Task AddEntity()
         {
-            if (StopOnFail.HasFail) return;
             //arrange
             var firstName = "Fake First Name";
             var lastName = "Fake Last Name";
@@ -63,7 +62,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(1)]
         public async Task ContainsEntity()
         {
-            if (StopOnFail.HasFail) return;
             //act
             bool exists = await this.Repository.ContainsAsync(EntityId.Value);
 
@@ -74,7 +72,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(2)]
         public async Task FindEntity()
         {
-            if (StopOnFail.HasFail) return;
             //act
             TestPerson entity = await this.Repository.FindAsync(EntityId.Value);
 
@@ -90,7 +87,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(3)]
         public async Task UpdateEntity()
         {
-            if (StopOnFail.HasFail) return;
             //arrange
             var entity = await this.Repository.FindAsync(EntityId.Value);
             var newFirstName = "Updated Fake First Name";
@@ -114,7 +110,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(4)]
         public async Task ListEntities()
         {
-            if (StopOnFail.HasFail) return;
             //act
             var entities = await this.Repository.ToListAsync();
 
@@ -125,7 +120,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(5)]
         public void GetQueryable()
         {
-            if (StopOnFail.HasFail) return;
             //act
             var entities = this.Repository.AsQueryable().ToList();
 
@@ -136,7 +130,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
         [Fact, Priority(6)]
         public async Task RemoveEntity()
         {
-            if (StopOnFail.HasFail) return;
             //act
             await this.Repository.RemoveAsync(EntityId.Value);
             await this.Repository.SaveChangesAsync();
@@ -144,14 +137,6 @@ namespace Neuroglia.UnitTests.Cases.Data.Repositories
             //assert
             TestPerson entity = (await Cache.GetListAsync<TestPerson>(typeof(TestPerson).FullName)).FirstOrDefault();
             entity.Should().BeNull();
-        }
-
-        [Fact, Priority(10)]
-        public async Task End()
-        {
-            if (StopOnFail.HasFail) return;
-            StopOnFail.HasFail = true;
-            throw new NotImplementedException("DistributedCacheRepositoryTests");
         }
 
         public void Dispose()
